@@ -26,7 +26,12 @@ var connection = mysql.createConnection({
     database: 'travelvan'
 });
 
-
+// FILE UPLOAD 
+var fileUpload = require('express-fileupload');
+var fs = require('fs'); // file system module 
+const { parse } = require("url");
+app.use(fileUpload());
+app.use('/Photos', Express.static(__dirname+'/Photos'));
 
 
 
@@ -75,7 +80,7 @@ app.get('/api/user_table',(request, response)=>{
         response.send(rows);
     });
 
-})
+});
 /* insert single data into the table */
 app.post('/api/user_table',(request, response)=>{
 
@@ -90,7 +95,82 @@ app.post('/api/user_table',(request, response)=>{
         response.json('Added data into user_table');
     });
 
-})
+});
+/* update name in a given record */
+app.put('/api/user_table/name',(request, response)=>{
+
+    var query = `UPDATE travelvan.user_table
+                SET Name=? WHERE UserId=?`;
+    var values = [
+        request.body['Name'],
+        request.body['UserId']
+    ];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed to update user name in user_table!');
+        }
+        response.json('Updated User Name in user_table Successfully!');
+    });
+
+});
+/* update phone in a given record */
+app.put('/api/user_table/phone',(request, response)=>{
+
+    var query = `UPDATE travelvan.user_table
+                SET Phone=? WHERE UserId=?`;
+    var values = [
+        request.body['Phone'],
+        request.body['UserId']
+    ];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed to update user phone in user_table!');
+        }
+        response.json('Updated User Phone number in user_table Successfully!');
+    });
+
+});
+/* update data in a given record */
+app.put('/api/user_table',(request, response)=>{
+
+    var query = `UPDATE travelvan.user_table
+                SET Name=?,
+                Phone=? 
+                WHERE UserId=?`;
+    var values = [
+        request.body['Name'], 
+        request.body['Phone'],
+        request.body['UserId'] // make sure to add the userId 
+                               // or the varaible for WHERE cond. at the end
+    ];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed to update user data in user_table!');
+        }
+        response.json('Updated User Data in user_table Successfully!');
+    });
+
+});
+/* delete a user --> not sending the id in values but instead from the URL itself*/
+app.delete('/api/user_table',(request, response)=>{
+
+    var query = `DELETE from travelvan.user_table WHERE UserId=?`;
+    var values = [
+        request.body['UserId']
+    ];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed to delete user in user_table!');
+        }
+        response.json('Deleted user Successfully!');
+    });
+
+});
+
 
 
 //Table2: Arriveby
@@ -383,5 +463,20 @@ app.get('/api/transport',(request, response)=>{
         }
         response.send(rows);
     });
+
+});
+
+// File or Photo Uploads
+app.post('/api/hadpictures/upload',(request, response)=>{
+
+    var values = request.body['pictureId']
+    fs.writeFile("./Photos/"+values+"_"+request.files.file.name,
+    request.files.file.data, function(err){
+        if(err){
+            return 
+            console.log(err);
+        }
+        response.json(request.files.file.name);
+    })
 
 });
