@@ -467,7 +467,7 @@ app.get('/api/transport',(request, response)=>{
 });
 
 // File or Photo Uploads
-app.post('/api/hadpictures/upload',(request, response)=>{
+app.post('/api/photo_upload',(request, response)=>{
 
     var values = request.body['pictureId']
     fs.writeFile("./Photos/"+values+"_"+request.files.file.name,
