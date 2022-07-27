@@ -15,7 +15,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 var cors = require("cors");
 app.use(cors()); // can use corsOptions but will leave as is for travelvan project 
 
-
 // MYSQL DB
 var mysql = require("mysql");
 const { request, response } = require("express");
@@ -26,12 +25,29 @@ var connection = mysql.createConnection({
     database: 'travelvan'
 });
 
+app.listen(49146,()=>{ 
+    connection.connect(function(err){
+        if (err) throw err;
+        console.log("Connected to database");
+    })
+});
+
 // FILE UPLOAD 
 var fileUpload = require('express-fileupload');
 var fs = require('fs'); // file system module 
 const { parse } = require("url");
 app.use(fileUpload());
 app.use('/Photos', Express.static(__dirname+'/Photos'));
+
+app.get('/api/Restaurants',(request,response) => {
+    var query = 'SELECT * FROM TravelVan.Restaurant'
+    connection.query(query,function(err,rows,fields){
+        if (err) {
+            response.send('Failed');
+        }
+        response.send(rows);
+    })
+})
 
 
 
@@ -428,9 +444,9 @@ app.get('/api/requires',(request, response)=>{
 
 
 //Table21: restaurant
-app.get('/api/restaurant',(request, response)=>{
+app.get('/api/Restaurant',(request, response)=>{
 
-    var query = `SELECT * FROM travelvan.restaurant`;
+    var query = `SELECT * FROM TravelVan.Restaurant`;
     connection.query(query, function(err,rows,fields){
         if(err){
             response.send('Failed select query from restaurant!');
