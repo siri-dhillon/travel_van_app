@@ -12,6 +12,15 @@ import {Malls} from "./Pages/Malls";
 import {MedicalServices} from "./Pages/MedicalServices";
 import {Home} from './Pages/Home';
 import {MyAccount} from './Pages/MyAccount';
+import {PublicTransport} from './Pages/PublicTransport';
+import {PrivateTransport} from './Pages/PrivateTransport';
+import {EmergencyMedicalService} from './Pages/EmergencyMedicalService';
+import {NonEmergencyMedicalService} from './Pages/NonEmergencyMedicalService';
+import {RecreationCenters} from './Pages/RecreationCenters';
+import {Transport} from './Pages/Transport';
+
+
+
 
 // modules for routing
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -50,7 +59,19 @@ function App() {
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/Parks">Parks</a>
               </li>
+
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/Transport">Transport</a>
+              </li>
+
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/MedicalServices">Medical Services</a>
+              </li>
               
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/RecreationCenters">RecreationCenters</a>
+              </li>
+
             </ul>
             <form className="d-flex">
               <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"></input>
@@ -71,6 +92,13 @@ function App() {
             <Route path="/Malls" element={<Malls />} />
             <Route path="/MedicalServices" element={<MedicalServices />} />
             <Route path="/MyAccount" element={<MyAccount />} />
+            <Route path="/PublicTransport" element={<PublicTransport />} />
+            <Route path="/PrivateTransport" element={<PrivateTransport />} />
+            <Route path="/EmergencyMedicalService" element={<EmergencyMedicalService />} />
+            <Route path="/NonEmergencyMedicalService" element={<NonEmergencyMedicalService />} />
+            <Route path="RecreationCenters" element={<RecreationCenters />} />
+            <Route path="Transport" element={<Transport />} />
+
         </Routes>
     </BrowserRouter>
   );

@@ -25,29 +25,29 @@ var connection = mysql.createConnection({
     database: 'travelvan'
 });
 
-app.listen(49146,()=>{ 
-    connection.connect(function(err){
-        if (err) throw err;
-        console.log("Connected to database");
-    })
-});
+// app.listen(49146,()=>{ 
+//     connection.connect(function(err){
+//         if (err) throw err;
+//         console.log("Connected to database");
+//     })
+// });
 
 // FILE UPLOAD 
-var fileUpload = require('express-fileupload');
-var fs = require('fs'); // file system module 
-const { parse } = require("url");
-app.use(fileUpload());
-app.use('/Photos', Express.static(__dirname+'/Photos'));
+// var fileUpload = require('express-fileupload');
+// var fs = require('fs'); // file system module 
+// const { parse } = require("url");
+// app.use(fileUpload());
+// app.use('/Photos', Express.static(__dirname+'/Photos'));
 
-app.get('/api/Restaurants',(request,response) => {
-    var query = 'SELECT * FROM TravelVan.Restaurant'
-    connection.query(query,function(err,rows,fields){
-        if (err) {
-            response.send('Failed');
-        }
-        response.send(rows);
-    })
-})
+// app.get('/api/Restaurant',(request,response) => {
+//     var query = 'SELECT * FROM TravelVan.Restaurant'
+//     connection.query(query,function(err,rows,fields){
+//         if (err) {
+//             response.send('Failed');
+//         }
+//         response.send(rows);
+//     })
+// })
 
 
 
@@ -101,7 +101,7 @@ app.get('/api/user_table',(request, response)=>{
 app.post('/api/user_table',(request, response)=>{
 
     var query = `INSERT into travelvan.user_table
-                (Name, UserId, Phone) VALUES (?, ?, ?) `;
+                (Name, UserId, Phone, Password) VALUES (?, ?, ?,?) `;
     var values = [request.body['Name'],request.body['UserId'],request.body['Phone']];
     
     connection.query(query, values,function(err,rows,fields){
