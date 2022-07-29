@@ -1,7 +1,7 @@
 import {React, Component} from 'react'; 
 import { variables } from '../Variables';
 
-export class Malls extends Component{
+export class Concerts extends Component{
 
   constructor(props) {
     super(props);
@@ -12,7 +12,7 @@ export class Malls extends Component{
   }
 
   refreshList(){
-    fetch(variables.API_URL+'malls')
+    fetch(variables.API_URL+'concert')
     .then(response=>response.json())
     .then(data=>{
       this.setState({Data_tab:data});
@@ -30,12 +30,13 @@ export class Malls extends Component{
 
     return(
       <div className="p-10 text-center bg-white">
-      <h1 className="mb-3 text-success">Shop in some the most exclusive brands, shops boutiques here!</h1>
+      <h1 className="mb-3 text-success">Concerts in Metro Vancouver!</h1>
       <table className="table table-success table-striped table-hover">
         <thead>
           <tr> 
-            <th> Mall ID</th>
-            <th> Directory</th>
+            <th> Concert ID</th>
+            <th> Price</th>
+            <th> Date</th>
             <th> Name</th>
             <th> Address</th>
             <th> Like/Dislike</th>
@@ -43,12 +44,12 @@ export class Malls extends Component{
           </thead>
           <tbody>
             {Data_tab.map(dep =>
-              <tr key={dep.MallID}>
-                <td>{dep.MallID}</td>
-                <td>{dep.Directory}</td>
+              <tr key={dep.ConcertID}>
+                <td>{dep.ConcertID}</td>
+                <td>{dep.Price}</td>
+                <td>{dep.Date}</td>
                 <td>{dep.Name}</td>
                 <td>{dep.Address}</td>
-                <td>{dep.Cost}</td>
                 <td>
                 <button type="button"
                 className="btn btn-light mr-1">

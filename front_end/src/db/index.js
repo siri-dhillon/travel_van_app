@@ -25,48 +25,6 @@ var connection = mysql.createConnection({
     database: 'travelvan'
 });
 
-// app.listen(49146,()=>{ 
-//     connection.connect(function(err){
-//         if (err) throw err;
-//         console.log("Connected to database");
-//     })
-// });
-
-// FILE UPLOAD 
-// var fileUpload = require('express-fileupload');
-// var fs = require('fs'); // file system module 
-// const { parse } = require("url");
-// app.use(fileUpload());
-// app.use('/Photos', Express.static(__dirname+'/Photos'));
-
-// app.get('/api/Restaurant',(request,response) => {
-//     var query = 'SELECT * FROM TravelVan.Restaurant'
-//     connection.query(query,function(err,rows,fields){
-//         if (err) {
-//             response.send('Failed');
-//         }
-//         response.send(rows);
-//     })
-// })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // APP listening on PORT = 49146 --> http://localhost:49146 
 app.listen(49146, ()=>{
@@ -183,6 +141,28 @@ app.delete('/api/user_table',(request, response)=>{
             response.send('Failed to delete user in user_table!');
         }
         response.json('Deleted user Successfully!');
+    });
+
+});
+
+// AUTHENTICATION
+/* select all data from the table */
+app.get('/api/signin',(request, response)=>{
+
+    var query = `SELECT Name, Phone FROM travelvan.user_table where UserId=? and password=?`;
+    var values = [
+        request.body['UserId'],
+        request.body['password']
+    ];
+    connection.query(query, values, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from user_table!');
+        }
+        if(!rows.length){
+            response.json("User does not exist");
+        }else {
+                response.send(rows);
+        }        
     });
 
 });

@@ -8,6 +8,7 @@ import {CreateAccount} from "./Pages/CreateAccount";
 import {Restaurants} from "./Pages/Restaurants";
 import {Parks} from "./Pages/Parks";
 import {Clubs} from "./Pages/Clubs";
+import {Concerts} from "./Pages/Concerts";
 import {Malls} from "./Pages/Malls";
 import {MedicalServices} from "./Pages/MedicalServices";
 import {Home} from './Pages/Home';
@@ -56,9 +57,9 @@ function App() {
                 <a className="nav-link active" aria-current="page" href="/Restaurants">Restaurants</a>
               </li>
 
-              <li className="nav-item">
+              {/* <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/Parks">Parks</a>
-              </li>
+              </li> */}
 
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/Transport">Transport</a>
@@ -71,6 +72,24 @@ function App() {
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/RecreationCenters">RecreationCenters</a>
               </li>
+
+              {/* Clubs */}
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/Clubs">Clubs</a>
+              </li>
+              {/* Parks */}
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/Parks">Parks</a>
+              </li>
+              {/* Malls */}
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/Malls">Malls</a>
+              </li>
+              {/* Concerts */}
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/Concerts">Concerts</a>
+              </li>
+
 
             </ul>
             <form className="d-flex">
@@ -88,6 +107,7 @@ function App() {
             <Route path="/CreateAccount" element={<CreateAccount />} />
             <Route path="/Restaurants" element={<Restaurants />} />
             <Route path="/Parks" element={<Parks />} />
+            <Route path="/Concerts" element={<Concerts />} />
             <Route path="/Clubs" element={<Clubs />} />
             <Route path="/Malls" element={<Malls />} />
             <Route path="/MedicalServices" element={<MedicalServices />} />
