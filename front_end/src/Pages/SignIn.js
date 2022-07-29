@@ -2,10 +2,36 @@ import logo from './Images/Travel-Van-Logo.png';
 
 //This is the sign in page for users to sign into
 import React, {Component} from 'react'; 
+import { variables } from '../Variables';
+//import { response } from 'express';
 
 
 export class SignIn extends Component{
+
   render () {
+    const [userId, set_userid] = this.useState("");
+    const [password, set_password] = this.useState("");
+    
+    const login_user = (data = {}) =>{
+
+
+      // fetch(variables.API_URL+'signin', {method: 'POST', 
+      // body: {
+      //   userId: userId,
+      //   password: password
+      // }})
+      // .then((response) => {
+      //   console.log(response);
+      // } )
+      
+      const res = fetch(variables.API_URL+'signin', {
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      });
+      console.log(res.json()); // parses JSON response into native JavaScript objects
+    }
+
   return (
   <section className="vh-100">
   <div className="container-fluid h-custom">
@@ -22,17 +48,21 @@ export class SignIn extends Component{
 
           <div className="form-outline mb-4">
             <input type="email" id="form3Example3" className="form-control form-control-lg"
-            placeholder="Enter your UserID" />
+            placeholder="Enter your UserID" onChange={(e)=>{
+              set_userid(e.target.value)
+            }} />
             <label className="form-label" htmlFor="form3Example3">UserID</label>
           </div>
 
           <div className="form-outline mb-3">
             <input type="password" id="form3Example4" className="form-control form-control-lg"
-              placeholder="Enter password" />
+              placeholder="Enter password" onChange={(e)=>{
+                set_password(e.target.value)
+              }}/>
             <label className="form-label" htmlFor="form3Example4">Password</label>
           </div>
 
-          <button className="btn btn-success btn-block mb-4"> Sign In</button>
+          <button className="btn btn-success btn-block mb-4" onClick={login_user({UserID: userId, password: password})}> Sign In</button>
           <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/createaccount"
                 className="link-success">Create Account</a></p>
 

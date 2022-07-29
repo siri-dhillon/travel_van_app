@@ -60,7 +60,7 @@ app.post('/api/user_table',(request, response)=>{
 
     var query = `INSERT into travelvan.user_table
                 (Name, UserId, Phone, Password) VALUES (?, ?, ?,?) `;
-    var values = [request.body['Name'],request.body['UserId'],request.body['Phone']];
+    var values = [request.body['Name'],request.body['UserId'],request.body['Phone'],request.body['Password']];
     
     connection.query(query, values,function(err,rows,fields){
         if(err){
@@ -147,9 +147,9 @@ app.delete('/api/user_table',(request, response)=>{
 
 // AUTHENTICATION
 /* select all data from the table */
-app.get('/api/signin',(request, response)=>{
+app.post('/api/signin',(request, response)=>{
 
-    var query = `SELECT Name, Phone FROM travelvan.user_table where UserId=? and password=?`;
+    var query = `SELECT UserId, Name, Phone FROM travelvan.user_table where UserId=? and password=?`;
     var values = [
         request.body['UserId'],
         request.body['password']
@@ -163,6 +163,21 @@ app.get('/api/signin',(request, response)=>{
         }else {
                 response.send(rows);
         }        
+    });
+
+});
+
+app.post('/api/register',(request, response)=>{
+
+    var query = `INSERT into travelvan.user_table
+                (Name, UserId, Phone, Password) VALUES (?, ?, ?,?) `;
+    var values = [request.body['Name'],request.body['UserId'],request.body['Phone'],request.body['Password']];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed to insert user in user_table!');
+        }
+        response.json('Added data into user_table');
     });
 
 });
