@@ -8,29 +8,42 @@ import { variables } from '../Variables';
 
 export class SignIn extends Component{
 
-  render () {
-    const [userId, set_userid] = this.useState("");
-    const [password, set_password] = this.useState("");
-    
-    const login_user = (data = {}) =>{
+  constructor(props) {
+    super(props);
 
-
-      // fetch(variables.API_URL+'signin', {method: 'POST', 
-      // body: {
-      //   userId: userId,
-      //   password: password
-      // }})
-      // .then((response) => {
-      //   console.log(response);
-      // } )
-      
-      const res = fetch(variables.API_URL+'signin', {
-        method: 'POST', // *GET, POST, PUT, DELETE, etc.
-        mode: 'cors', // no-cors, *cors, same-origin
-        body: JSON.stringify(data) // body data type must match "Content-Type" header
-      });
-      console.log(res.json()); // parses JSON response into native JavaScript objects
+    this.state={
+      Data_tab:[], 
+      userid: "",
+      password: ""
     }
+
+  }
+
+  refreshList(){
+    fetch(variables.API_URL+'signin', {
+      method: 'POST',
+      body: {
+        UserId: data => this.setState({userid:data}),
+        password: data => this.setState({password:data})
+      }
+    })
+    .then(response=>response.json())
+    .then(data=>{
+      this.setState({Data_tab:data});
+    })
+}
+
+  componentDidMount() {
+    this.refreshList();
+  }
+
+  render () {
+    var userid = this.state;
+    var password = this.state;
+
+    const {
+      Data_tab
+    }=this.state;
 
   return (
   <section className="vh-100">
@@ -47,9 +60,9 @@ export class SignIn extends Component{
           </div> 
 
           <div className="form-outline mb-4">
-            <input type="email" id="form3Example3" className="form-control form-control-lg"
+            <input type="text" id="form3Example3" className="form-control form-control-lg"
             placeholder="Enter your UserID" onChange={(e)=>{
-              set_userid(e.target.value)
+              userid = e.target.value
             }} />
             <label className="form-label" htmlFor="form3Example3">UserID</label>
           </div>
@@ -57,12 +70,12 @@ export class SignIn extends Component{
           <div className="form-outline mb-3">
             <input type="password" id="form3Example4" className="form-control form-control-lg"
               placeholder="Enter password" onChange={(e)=>{
-                set_password(e.target.value)
+                password = e.target.value
               }}/>
             <label className="form-label" htmlFor="form3Example4">Password</label>
           </div>
 
-          <button className="btn btn-success btn-block mb-4" onClick={login_user({UserID: userId, password: password})}> Sign In</button>
+          <button className="btn btn-success btn-block mb-4" onClick={this.refreshList()}> Sign In</button>
           <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/createaccount"
                 className="link-success">Create Account</a></p>
 
