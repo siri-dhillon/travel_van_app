@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 
 
 // creating an instance of express app 
-var app = Express(); 
+var app = Express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -158,11 +158,12 @@ app.post('/api/signin',(request, response)=>{
         if(err){
             response.send('Failed select query from user_table!');
         }
-        if(!rows.length){
-            response.json("User does not exist");
-        }else {
-                response.send(rows);
-        }        
+        // if(!rows.length){
+        //     response.json("User does not exist");
+        // }else {
+        //         response.send(rows);
+        // } 
+        response.send(rows)       
     });
 
 });
@@ -489,5 +490,28 @@ app.post('/api/photo_upload',(request, response)=>{
         }
         response.json(request.files.file.name);
     })
+
+});
+
+
+// Auth Login
+app.post('/api/login',(request, response)=>{
+
+    var query = `SELECT UserId, Name, Phone FROM travelvan.user_table where UserId=? and password=?`;
+    var values = [
+        request.body.UserId['UserId'],
+        request.body.password['password']
+    ];
+    connection.query(query, values, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from user_table!');
+        }
+        // if(!rows.length){
+        //     response.json("User does not exist");
+        // }else {
+        //         response.send(rows);
+        // } 
+        response.send(rows)       
+    });
 
 });
