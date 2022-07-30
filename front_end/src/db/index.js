@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 
 
 // creating an instance of express app 
-var app = Express(); 
+var app = Express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -162,7 +162,8 @@ app.post('/api/signin',(request, response)=>{
             response.json("User does not exist");
         }else {
                 response.send(rows);
-        }        
+        } 
+        //response.send(rows)       
     });
 
 });
@@ -491,3 +492,5 @@ app.post('/api/photo_upload',(request, response)=>{
     })
 
 });
+
+
