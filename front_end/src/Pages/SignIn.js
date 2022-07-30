@@ -3,46 +3,67 @@ import logo from './Images/Travel-Van-Logo.png';
 //This is the sign in page for users to sign into
 import React, {Component} from 'react'; 
 import { variables } from '../Variables';
-//import { response } from 'express';
+import axios from 'axios';
 
-const userid = "";
-const password ="";
 
 export class SignIn extends Component{
 
-  constructor(props) {
-    super(props);
-
-    this.state={
-      Data_tab:[], 
-      userid: "",
-      password: ""
-    }
-
+    constructor(props) {
+      super(props);
+      this.state = { 
+          UserId:'',
+          password:'',
+          erros:''
+      };
+  // console.log('login',props)
   }
 
-  OnClick(){
-    fetch(variables.API_URL+'signin', {
-      method: 'POST',
-      body: {
-        UserId: userid,
-        password: password
-      }
+  onChange = (e) =>{
+    this.setState({ [e.target.name]: e.target.value });
+   }
+
+    Login =(e) =>{
+      e.preventDefault();
+      this.setState({ [e.target.name]: e.target.value });    
+
+    const UserId = this.state.UserId;
+    const password = this.state.password;
+        
+    axios.post(variables.API_URL+'signin',  {
+      "UserId" : UserId,
+      "password" : password
+    } )
+    .then( (res) => {
+      console.log(res);
+      if(res['data'].token) { // this mean succsfuly
+        
+        console.log(res.data.token);
+        localStorage.setItem("token", res.data.token);
+          this.props.ReUserState(true);
+          
+          this.props.props.history.push('/Home');
+        } 
+        if(res['data'].message){// this mean faild
+          const err  = res.data.message;
+          this.setState({
+            erros: err
+          });
+        }
+
     })
-    .then(response=>response.json())
-    .then(data=>{
-      this.setState({Data_tab:data});
-      console.log({Data_tab:data});
-    })
-}
+    .catch((err) => {console.log(err)} )
+    }
+
+
 
   render () {
 
-    // const {
-    //   Data_tab
-    // }=this.state;
-
   return (
+    <React.Fragment>   
+    { this.state.erros ?
+     <i className="alert alert-danger" role="alert">
+         {this.state.erros}</i> : '' 
+    } 
   <section className="vh-100">
   <div className="container-fluid h-custom">
     <div className="row d-flex justify-content-center align-items-center h-100">
@@ -50,35 +71,28 @@ export class SignIn extends Component{
         <img src={logo} alt = "TravelVan Logo" className="img-fluid"/>
         </div>
           <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-            <form action = "https://www.google.ca/">
-            <h1>Sign In</h1>
-            <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
-              <p className="lead fw-normal mb-0 me-3">Welcome back!</p>
-          </div> 
-
-          <div className="form-outline mb-4">
-            <input type="text" id="form3Example3" className="form-control form-control-lg"
-            placeholder="Enter your UserID" onChange={(e)=>{
-              //userid = e.target.value
-              this.setState({userid:e.target.value})
-            }} />
-            <label className="form-label" htmlFor="form3Example3">UserID</label>
-          </div>
-
-          <div className="form-outline mb-3">
-            <input type="password" id="form3Example4" className="form-control form-control-lg"
-              placeholder="Enter password" onChange={(e)=>{
-                //password = e.target.value
-                this.setState({userid:e.target.value})
-              }}/>
-            <label className="form-label" htmlFor="form3Example4">Password</label>
-          </div>
-
-          <button className="btn btn-success btn-block mb-4" onClick={this.OnClick()}> Sign In</button>
-          <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/createaccount"
+        <h1>Sign In</h1>
+        <p className="lead fw-normal mb-3 me-3">Welcome back!</p>
+        <label> UserId</label>
+        <input value={this.state.UserId}
+                onChange={this.onChange} 
+                type="text"
+                name="UserId" 
+                autoComplete="off"
+                className="form-control mb-3" 
+                placeholder="Enter your Userid"
+                />
+        <label> Password</label>
+        <input value={this.state.password}
+                onChange={this.onChange} 
+                type="password" 
+                name="password"
+                className="form-control mb-3" 
+                placeholder="Enter your Password"
+                />
+        <button onClick={this.Login}  className="btn btn-md btn-success btn-block" type="submit">Sign in</button>
+        <p className="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="/createaccount"
                 className="link-success">Create Account</a></p>
-
-        </form>
       </div>
     </div>
   </div>
@@ -87,7 +101,7 @@ export class SignIn extends Component{
       <div className="text-white mb-3 mb-md-0">Simran Nijjar and Sirpreet Dhillon</div>
   </div>
 </section>
-
+</React.Fragment>
 
     );
 }
