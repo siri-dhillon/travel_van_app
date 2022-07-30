@@ -54,8 +54,6 @@ export class SignIn extends Component{
     .catch((err) => {console.log(err)} )
     }
 
-
-
   render () {
 
   return (
@@ -102,7 +100,6 @@ export class SignIn extends Component{
   </div>
 </section>
 </React.Fragment>
-
     );
 }
 }
