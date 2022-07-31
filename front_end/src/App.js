@@ -19,9 +19,7 @@ import {EmergencyMedicalService} from './Pages/EmergencyMedicalService';
 import {NonEmergencyMedicalService} from './Pages/NonEmergencyMedicalService';
 import {RecreationCenters} from './Pages/RecreationCenters';
 import {Transport} from './Pages/Transport';
-
-
-
+// import {DeleteAccount} from './Pages/DeleteAccount';
 
 // modules for routing
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -90,6 +88,10 @@ function App() {
                 <a className="nav-link active" aria-current="page" href="/Concerts">Concerts</a>
               </li>
 
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/MyAccount">My Account</a>
+              </li>
+
 
             </ul>
             <form className="d-flex">
@@ -118,6 +120,7 @@ function App() {
             <Route path="/NonEmergencyMedicalService" element={<NonEmergencyMedicalService />} />
             <Route path="RecreationCenters" element={<RecreationCenters />} />
             <Route path="Transport" element={<Transport />} />
+            {/* <Route path="DeleteAccount" element={<DeleteAccount />} /> */}
 
         </Routes>
     </BrowserRouter>
