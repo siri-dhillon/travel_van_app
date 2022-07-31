@@ -1,11 +1,69 @@
 import logo from './Images/Travel-Van-Logo.png';
 import React, {Component} from 'react'; 
+import { variables } from '../Variables';
+import axios from 'axios';
 
 
 export class CreateAccount extends Component{
+    constructor(props) {
+        super(props);
+        this.state = { 
+            Name: '',
+            UserId:'',
+            Phone: 0,
+            Password:'',
+            erros:''
+        };
+    }
+
+    onChange = (e) =>{
+        this.setState({ [e.target.name]: e.target.value });
+       }
+
+       
+       Login =(e) =>{
+        e.preventDefault();
+        this.setState({ [e.target.name]: e.target.value });    
+    
+      const Name = this.state.Name;
+      const UserId = this.state.UserId;
+      const Phone = this.state.Phone;
+      const Password = this.state.Password;
+          
+      axios.post(variables.API_URL+'createaccount',  {
+        "Name" : Name,
+        "UserId" : UserId,
+        "Phone" : Phone,
+        "Password" : Password
+      } )
+      .then( (res) => {
+        console.log(res);
+        if(res['data'].token) { // this mean succsfuly
+          
+          console.log(res.data.token);
+          localStorage.setItem("token", res.data.token);
+            this.props.ReUserState(true);
+            
+            this.props.props.history.push('/Home');
+          } 
+          if(res['data'].message){// this mean faild
+            const err  = res.data.message;
+            this.setState({
+              erros: err
+            });
+          }
+  
+      })
+      .catch((err) => {console.log(err)} )
+      }
   render () {
    
     return (
+        <React.Fragment>   
+        { this.state.erros ?
+         <i className="alert alert-danger" role="alert">
+             {this.state.erros}</i> : '' 
+        } 
         <section className="vh-100">
         <div className="Create Account">
             <div className="container-fluid h-custom">
@@ -19,17 +77,19 @@ export class CreateAccount extends Component{
         
                     <h1>Create Account</h1>
                     <label>Name</label>
-                    <input type = "text" id="form2Example1" className="form-control mb-2" placeholder="Enter your name" 
+                    <input value={this.state.Name} onChange={this.onChange} type = "text" autoComplete="off" name="Name" className="form-control mb-2" placeholder="Enter your name" 
                     />
         
-                    <label>User</label>
-                    <input type = "text" id="form2Example1" className="form-control mb-2" placeholder="Create a unique UserID" />
+                    <label>UserId</label>
+                    <input value={this.state.UserId} onChange={this.onChange} type = "text" autoComplete="off" name="UserId" className="form-control mb-2" placeholder="Create a unique UserID" />
+
                     <label>Phone Number</label>
-                    <input type = "tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" id="form2Example1" className="form-control mb-2" placeholder="Enter your phone number" />
+                    <input value={this.state.Phone} onChange={this.onChange} type = "tel" autoComplete="off" name="Phone" className="form-control mb-2" placeholder="Enter your phone number" />
+
                     <label>Password</label>
-                     <input type = "text" id="form2Example1" className="form-control mb-4" placeholder="Make a strong password" 
+                     <input value={this.state.Password} onChange={this.onChange} type = "text" autoComplete="off" name="Password" className="form-control mb-4" placeholder="Make a strong password" 
                     />
-                    <button className="btn btn-success btn-block mb-4"> Create Account</button>
+                    <button onClick={this.Login} className="btn btn-success btn-block mb-4">Create Account</button>
                     <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/signin"
                 className="link-success">Sign In</a></p>
                 </div>
@@ -41,6 +101,7 @@ export class CreateAccount extends Component{
             <div className="text-white mb-3 mb-md-0">Simran Nijjar and Sirpreet Dhillon</div>
         </div>
     </section>
+    </React.Fragment>
     )
 }
 }

@@ -56,10 +56,10 @@ app.get('/api/user_table',(request, response)=>{
 
 });
 /* insert single data into the table */
-app.post('/api/user_table',(request, response)=>{
+app.post('/api/createaccount',(request, response)=>{
 
-    var query = `INSERT into travelvan.user_table
-                (Name, UserId, Phone, Password) VALUES (?, ?, ?,?) `;
+    var query = `INSERT INTO travelvan.user_table
+                (Name, UserId, Phone, Password) VALUES (?, ?, ?, ?) `;
     var values = [request.body['Name'],request.body['UserId'],request.body['Phone'],request.body['Password']];
     
     connection.query(query, values,function(err,rows,fields){
@@ -492,5 +492,4 @@ app.post('/api/photo_upload',(request, response)=>{
     })
 
 });
-
 
