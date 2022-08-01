@@ -48,7 +48,6 @@ export class Malls extends Component{
                 <td>{dep.Directory}</td>
                 <td>{dep.Name}</td>
                 <td>{dep.Address}</td>
-                <td>{dep.Cost}</td>
                 
                  </tr> 
                  )}
