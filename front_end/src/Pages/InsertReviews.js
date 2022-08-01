@@ -9,7 +9,7 @@ export class InsertReviews extends Component{
         super(props);
         this.state = { 
             Placeid: 0,
-            UserId:'',
+            Reviewerid:'',
             Ratings: 0.0,
             w_review:'',
             pictureid:'',
@@ -27,15 +27,15 @@ export class InsertReviews extends Component{
         this.setState({ [e.target.name]: e.target.value });    
     
       const Placeid = this.state.Placeid;
-      const Rewierid = this.state.UserId;
-      const Ratings = this.state.Phone;
-      const Reviewid = this.state.Password;
+      const Reviewerid = this.state.Reviewerid;
+      const Ratings = this.state.Ratings;
+      const w_review = this.state.w_review;
           
       axios.post(variables.API_URL+'insertreviews',  {
-        "Name" : Name,
-        "UserId" : UserId,
-        "Phone" : Phone,
-        "Password" : Password
+        "Placeid" : Placeid,
+        "Reviewerid" : Reviewerid,
+        "Ratings" : Ratings,
+        "w_review" : w_review
       } )
       .then( (res) => {
         console.log(res);
@@ -66,7 +66,7 @@ export class InsertReviews extends Component{
              {this.state.erros}</i> : '' 
         } 
         <section className="vh-100">
-        <div className="Create Account">
+        <div className="Insert Reviews">
             <div className="container-fluid h-custom">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-md-9 col-lg-6 col-xl-5">
@@ -76,23 +76,21 @@ export class InsertReviews extends Component{
                         <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start">
                     </div> 
         
-                    <h1>Create Account</h1>
-                    <label>Name</label>
-                    <input value={this.state.Name} onChange={this.onChange} type = "text" autoComplete="off" name="Name" className="form-control mb-2" placeholder="Enter your name" 
+                    <h1>Write a Review</h1>
+                    <label>Placeid</label>
+                    <input value={this.state.Placeid} onChange={this.onChange} type = "text" autoComplete="off" name="Placeid" className="form-control mb-2" placeholder="Enter your the id of the place you are reviewing" 
                     />
         
-                    <label>UserId</label>
-                    <input value={this.state.UserId} onChange={this.onChange} type = "text" autoComplete="off" name="UserId" className="form-control mb-2" placeholder="Create a unique UserID" />
+                    <label>Reviewerid</label>
+                    <input value={this.state.Reviewerid} onChange={this.onChange} type = "text" autoComplete="off" name="Reviewerid" className="form-control mb-2" placeholder="Enter your UserId" />
 
-                    <label>Phone Number</label>
-                    <input value={this.state.Phone} onChange={this.onChange} type = "tel" autoComplete="off" name="Phone" className="form-control mb-2" placeholder="Enter your phone number" />
+                    <label>Rating</label>
+                    <input value={this.state.Rating} onChange={this.onChange} type = "text" autoComplete="off" name="Ratings" className="form-control mb-2" placeholder="Enter your rating of the place as a number" />
 
-                    <label>Password</label>
-                     <input value={this.state.Password} onChange={this.onChange} type = "text" autoComplete="off" name="Password" className="form-control mb-4" placeholder="Make a strong password" 
+                    <label>Review</label>
+                     <input value={this.state.w_review} onChange={this.onChange} type = "text" autoComplete="off" name="w_review" className="form-control mb-4" placeholder="Write your review" 
                     />
-                    <button onClick={this.Login} className="btn btn-success btn-block mb-4">Create Account</button>
-                    <p className="small fw-bold mt-2 pt-1 mb-0">Already have an account? <a href="/signin"
-                className="link-success">Sign In</a></p>
+                    <button onClick={this.Login} className="btn btn-success btn-block mb-4">Insert Review</button>
                 </div>
             </div>
         </div>

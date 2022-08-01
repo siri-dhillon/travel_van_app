@@ -145,6 +145,7 @@ function App() {
             <Route path="ConcertMax" element={<ConcertMax />} />
             <Route path="RestaurantsAvgCost" element={<RestaurantsAvgCost />} />
             <Route path="UnderAvg" element={<UnderAvg />} />
+            <Route path="InsertReviews" element={<InsertReviews />} />
 
         </Routes>
     </BrowserRouter>

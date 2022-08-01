@@ -626,7 +626,7 @@ app.post('/api/insertreviews',(request, response)=>{
 
     var query = `INSERT INTO travelvan.postedreviews
                 (Placeid, ReviewerId, Ratings, w_review) VALUES (?, ?, ?, ?) `;
-    var values = [request.body['Placeid'],request.body['ReviewerId'],request.body['Ratings'],request.body['w_review']];
+    var values = [request.body['Placeid'],request.body['Reviewerid'],request.body['Ratings'],request.body['w_review']];
     
     connection.query(query, values,function(err,rows,fields){
         if(err){
