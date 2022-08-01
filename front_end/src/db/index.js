@@ -511,3 +511,18 @@ app.post('/api/photo_upload',(request, response)=>{
     })
 
 });
+
+
+app.post('/api/reviews',(request, response)=>{
+
+    //var values = request.body['']
+    var query = `SELECT * FROM travelvan.ownedplace`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from reviews!');
+        }
+        response.send(rows);
+    });
+
+});
+

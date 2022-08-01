@@ -20,6 +20,7 @@ import {NonEmergencyMedicalService} from './Pages/NonEmergencyMedicalService';
 import {RecreationCenters} from './Pages/RecreationCenters';
 import {Transport} from './Pages/Transport';
 import {DeleteAccount} from './Pages/DeleteAccount';
+import {Reviews} from './Pages/Reviews';
 import {UpdatePhone} from './Pages/UpdatePhone';
 import {RestaurantDressCode} from './Pages/RestaurantDressCode';
 
@@ -90,6 +91,10 @@ function App() {
                 <a className="nav-link active" aria-current="page" href="/MyAccount">My Account</a>
               </li>
 
+              <li className="nav-item">
+                <a className="nav-link active" aria-current="page" href="/Reviews">Reviews</a>
+              </li>
+
 
             </ul>
             <form className="d-flex">
@@ -105,6 +110,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/signin" element={<SignIn />} />
             <Route path="/CreateAccount" element={<CreateAccount />} />
+            <Route path="/Reviews" element={<Reviews />} />
             <Route path="/Restaurants" element={<Restaurants />} />
             <Route path="/Parks" element={<Parks />} />
             <Route path="/Concerts" element={<Concerts />} />

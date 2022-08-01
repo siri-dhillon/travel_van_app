@@ -16,6 +16,7 @@ export class Malls extends Component{
     .then(response=>response.json())
     .then(data=>{
       this.setState({Data_tab:data});
+      console.log(data);
     })
 }
 
