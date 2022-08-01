@@ -34,7 +34,9 @@ export class Restaurants extends Component{
       <h4 className="mb-3">From Canadian, to Indian, to French, to Japanese and so much more.</h4>
       <h5 className="mb-3 text-success">All of these restaurants make Vancouver a great place to travel!</h5>
       <h5 className="mb-3">To search restaurant name by dresscode, click search below</h5>
+      <h5 className="mb-3 text-success">To group by dress code and average cost, click average below</h5>
       <div className= "mb-3" > <a href="/RestaurantDressCode" className="btn btn-outline-success">Search</a></div>
+      <div className= "mb-3" > <a href="/RestaurantsAvgCost" className="btn btn-outline-success">Average</a></div>
       <table className="table table-success table-striped table-hover">
         <thead>
           <tr> 

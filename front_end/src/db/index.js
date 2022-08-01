@@ -276,7 +276,7 @@ app.get('/api/concert',(request, response)=>{
 
 app.get('/api/concertmin',(request, response)=>{
 
-    var query = `SELECT ConcertID, Price, Name, Address, Date FROM travelvan.concert WHERE PRICE = (SELECT MIN(Price) FROM travelvan.concert)`;
+    var query = `SELECT ConcertID, Price, Name, Address, Date FROM travelvan.concert WHERE Price = (SELECT MIN(Price) FROM travelvan.concert)`;
     connection.query(query, function(err,rows,fields){
         if(err){
             response.send('Failed select query from concert!');
@@ -526,6 +526,18 @@ app.post('/api/RestaurantDressCode',(request, response)=>{
         }
         if(!rows.length){
             response.json("Dress code does not exist");
+        }
+        response.send(rows);
+    });
+
+});
+
+app.get('/api/RestaurantsAvgCost',(request, response)=>{
+
+    var query = `SELECT RestaurantID, dressCode, Cost FROM TravelVan.Restaurant WHERE Cost = (SELECT AVG(Cost) FROM travelvan.Restaurant) GROUP BY dressCode`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from restaurant!');
         }
         response.send(rows);
     });

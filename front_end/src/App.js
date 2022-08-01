@@ -28,6 +28,7 @@ import {ClubAddress} from './Pages/ClubAddress';
 import {ClubFee} from './Pages/ClubFee';
 import {ConcertMin} from './Pages/ConcertMin';
 import {ConcertMax} from './Pages/ConcertMax';
+import {RestaurantsAvgCost} from './Pages/RestaurantsAvgCost';
 
 // modules for routing
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -137,6 +138,7 @@ function App() {
             <Route path="ClubFee" element={<ClubFee />} />
             <Route path="ConcertMin" element={<ConcertMin />} />
             <Route path="ConcertMax" element={<ConcertMax />} />
+            <Route path="RestaurantsAvgCost" element={<RestaurantsAvgCost />} />
 
         </Routes>
     </BrowserRouter>
