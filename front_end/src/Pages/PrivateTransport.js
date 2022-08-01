@@ -42,6 +42,7 @@ export class PrivateTransport extends Component{
           <tr> 
             <th> ID</th>
             <th> Company</th>
+            
           </tr>
           </thead>
           <tbody>
@@ -49,6 +50,8 @@ export class PrivateTransport extends Component{
               <tr key={dep.TransportID}>
                 <td>{dep.TransportID}</td>
                 <td>{dep.Company}</td>
+                
+                
                  </tr> 
                  )}
           </tbody>

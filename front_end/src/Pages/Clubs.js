@@ -45,6 +45,7 @@ export class Clubs extends Component{
             <th> Entree Fee</th>
             <th> Club Name</th>
             <th> Address</th>
+            
           </tr>
           </thead>
           <tbody>
@@ -54,6 +55,7 @@ export class Clubs extends Component{
                 <td>{dep.Fee}</td>
                 <td>{dep.Name}</td>
                 <td>{dep.Address}</td>
+                
                  </tr> 
                  )}
           </tbody>

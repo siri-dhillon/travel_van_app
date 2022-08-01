@@ -57,6 +57,7 @@ export class Restaurants extends Component{
                 <td>{dep.Cuisine}</td>
                 <td>{dep.dressCode}</td>
                 <td>{dep.Cost}</td>
+                
                  </tr> 
                  )}
           </tbody>
