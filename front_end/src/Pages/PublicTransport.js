@@ -70,6 +70,10 @@ export class PublicTransport extends Component{
                  )}
           </tbody>
       </table>
+      <div
+        className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-success">
+            <div className="text-white mb-3 mb-md-0">Simran Nijjar and Sirpreet Dhillon</div>
+        </div>
     </div>
     )
   }

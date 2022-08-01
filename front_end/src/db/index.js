@@ -18,6 +18,7 @@ app.use(cors()); // can use corsOptions but will leave as is for travelvan proje
 // MYSQL DB
 var mysql = require("mysql");
 const { request, response } = require("express");
+const e = require("express");
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -452,6 +453,24 @@ app.get('/api/Restaurant',(request, response)=>{
 
 });
 
+app.post('/api/RestaurantDressCode',(request, response)=>{
+
+    var query = `SELECT RestaurantID, Name, dressCode FROM TravelVan.Restaurant WHERE dressCode = ?`;
+    var values = [
+        request.body['dressCode']
+    ];
+    connection.query(query,values,function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from restaurant!');
+        }
+        if(!rows.length){
+            response.json("Dress code does not exist");
+        }
+        response.send(rows);
+    });
+
+});
+
 //Table22: tourist
 app.get('/api/tourist',(request, response)=>{
 
@@ -492,4 +511,3 @@ app.post('/api/photo_upload',(request, response)=>{
     })
 
 });
-

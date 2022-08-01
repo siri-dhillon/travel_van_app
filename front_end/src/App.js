@@ -21,6 +21,7 @@ import {RecreationCenters} from './Pages/RecreationCenters';
 import {Transport} from './Pages/Transport';
 import {DeleteAccount} from './Pages/DeleteAccount';
 import {UpdatePhone} from './Pages/UpdatePhone';
+import {RestaurantDressCode} from './Pages/RestaurantDressCode';
 
 // modules for routing
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -55,10 +56,6 @@ function App() {
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/Restaurants">Restaurants</a>
               </li>
-
-              {/* <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/Parks">Parks</a>
-              </li> */}
 
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/Transport">Transport</a>
@@ -123,6 +120,7 @@ function App() {
             <Route path="Transport" element={<Transport />} />
             <Route path="DeleteAccount" element={<DeleteAccount />} />
             <Route path="UpdatePhone" element={<UpdatePhone />} />
+            <Route path="RestaurantDressCode" element={<RestaurantDressCode />} />
 
         </Routes>
     </BrowserRouter>

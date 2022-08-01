@@ -33,10 +33,12 @@ export class Restaurants extends Component{
       <h1 className="mb-3 text-success">Check out some of the various food places!</h1>
       <h4 className="mb-3">From Canadian, to Indian, to French, to Japanese and so much more.</h4>
       <h5 className="mb-3 text-success">All of these restaurants make Vancouver a great place to travel!</h5>
+      <h5 className="mb-3">To search restaurant name by dresscode, click search below</h5>
+      <div className= "mb-3" > <a href="/RestaurantDressCode" className="btn btn-outline-success">Search</a></div>
       <table className="table table-success table-striped table-hover">
         <thead>
           <tr> 
-            <th> RestaurantID</th>
+            <th> ID</th>
             <th> Restaurant Name</th>
             <th> Address</th>
             <th> Cuisine</th>
@@ -74,6 +76,10 @@ export class Restaurants extends Component{
                  )}
           </tbody>
       </table>
+    <div
+        className="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-success">
+            <div className="text-white mb-3 mb-md-0">Simran Nijjar and Sirpreet Dhillon</div>
+        </div>
     </div>
     )
   }
