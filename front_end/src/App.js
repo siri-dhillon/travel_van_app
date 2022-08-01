@@ -31,6 +31,7 @@ import {ConcertMin} from './Pages/ConcertMin';
 import {ConcertMax} from './Pages/ConcertMax';
 import {RestaurantsAvgCost} from './Pages/RestaurantsAvgCost';
 import {UnderAvg} from './Pages/UnderAvg';
+import {FindReviews} from './Pages/FindReviews';
 
 // modules for routing
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -146,6 +147,7 @@ function App() {
             <Route path="RestaurantsAvgCost" element={<RestaurantsAvgCost />} />
             <Route path="UnderAvg" element={<UnderAvg />} />
             <Route path="InsertReviews" element={<InsertReviews />} />
+            <Route path="FindReviews" element={<FindReviews />} />
 
         </Routes>
     </BrowserRouter>

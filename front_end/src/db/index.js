@@ -637,6 +637,19 @@ app.post('/api/insertreviews',(request, response)=>{
 
 });
 
+app.post('/api/findreviews',(request, response)=>{
+    var query = `SELECT * FROM TravelVan.postedreviews WHERE Reviewerid = ?`;
+    var values = [request.body['Reviewerid']];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed!');
+        }
+        response.send(rows);
+    });
+
+});
+
 //get Review Id to add pictures
 
 app.post('/api/getreviewid',(request, response)=>{
