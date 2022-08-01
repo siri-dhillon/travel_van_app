@@ -58,7 +58,7 @@ CREATE TABLE NonEmergencyMedicalService(
 
 CREATE TABLE EmergencyMedicalService(
     medID CHAR(10) NOT NULL, 
-	24X7 BOOLEAN,
+	Open24X7 BOOLEAN,
    	PRIMARY KEY (medID),
     FOREIGN KEY (medID) REFERENCES MedicalService(medID) ON UPDATE CASCADE ON DELETE CASCADE);
 
