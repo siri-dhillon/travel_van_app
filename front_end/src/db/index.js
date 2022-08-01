@@ -570,6 +570,18 @@ app.get('/api/transport',(request, response)=>{
 
 });
 
+app.get('/api/underavg',(request, response)=>{
+
+    var query = `SELECT TransportID, Cost FROM  travelvan.transport WHERE Cost < (SELECT AVG(Cost) FROM travelvan.transport)`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from transport!');
+        }
+        response.send(rows);
+    });
+
+});
+
 // File or Photo Uploads
 app.post('/api/photo_upload',(request, response)=>{
 

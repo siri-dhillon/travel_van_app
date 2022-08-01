@@ -33,9 +33,11 @@ export class Transport extends Component{
       <h1 className="mb-3 text-success">Can't decide where to go next?</h1>
       <h4 className="mb-3">Below are the costs of transportation to some places</h4>
       <h5 className="mb-3 text-success">Refer to to public or private transport by clicking the buttons to maybe find your next destination</h5>
+      <h5 className="mb-3 text">Want transport under the average price? Click Under Average</h5>
 
       <div className= "mb-3" > <a href="/PublicTransport" className="btn btn-outline-success">Public Transport</a></div>
       <div className="mb-3"> <a href="/PrivateTransport" className="btn btn-outline-success">Private Transport</a></div>
+      <div className="mb-3"> <a href="/UnderAvg" className="btn btn-outline-success">Under Average</a></div>
       <table className="table table-success table-striped table-hover">
         <thead>
           <tr> 

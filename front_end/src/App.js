@@ -29,6 +29,7 @@ import {ClubFee} from './Pages/ClubFee';
 import {ConcertMin} from './Pages/ConcertMin';
 import {ConcertMax} from './Pages/ConcertMax';
 import {RestaurantsAvgCost} from './Pages/RestaurantsAvgCost';
+import {UnderAvg} from './Pages/UnderAvg';
 
 // modules for routing
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -52,26 +53,32 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
+              {/* Sign In */}
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/SignIn">Sign In</a>
               </li>
 
+              {/* Create Account */}
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/CreateAccount">Create Account</a>
               </li>
 
+              {/* Restaurants */}
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/Restaurants">Restaurants</a>
               </li>
 
+              {/* Transport */}
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/Transport">Transport</a>
               </li>
 
+              {/* Medical Services */}
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/MedicalServices">Medical Services</a>
               </li>
               
+              {/* Recreation Centers */}
               <li className="nav-item">
                 <a className="nav-link active" aria-current="page" href="/RecreationCenters">RecreationCenters</a>
               </li>
@@ -139,6 +146,7 @@ function App() {
             <Route path="ConcertMin" element={<ConcertMin />} />
             <Route path="ConcertMax" element={<ConcertMax />} />
             <Route path="RestaurantsAvgCost" element={<RestaurantsAvgCost />} />
+            <Route path="UnderAvg" element={<UnderAvg />} />
 
         </Routes>
     </BrowserRouter>
