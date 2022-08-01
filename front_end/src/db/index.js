@@ -608,10 +608,9 @@ app.post('/api/photo_upload',(request, response)=>{
 // REVIEWS
 app.get('/api/selectreviews',(request, response)=>{
 
-    var query = `SELECT ownedplace.placeid, ownedplace.Name, ownedplace.Address, postedreviews.Ratings, postedreviews.w_review, hadpictures.PictureID
+    var query = `SELECT ownedplace.placeid, ownedplace.Name, ownedplace.Address, postedreviews.Ratings, postedreviews.w_review
                 FROM postedreviews 
                 INNER JOIN ownedplace ON postedreviews.Placeid=ownedplace.Placeid
-                INNER JOIN hadpictures ON hadpictures.Reviewid=postedreviews.Reviewid
                 ORDER BY ownedplace.Placeid`;
     connection.query(query, function(err,rows,fields){
         if(err){

@@ -38,10 +38,10 @@ export class Reviews extends Component{
         <thead>
           <tr> 
             <th> Name</th>
-            <th> Adress</th>
+            <th> Address</th>
             <th> Ratings</th>
             <th> Reviews</th>
-            <th> Pictures Inserted</th>
+            {/* <th> Pictures Inserted</th> */}
           </tr>
           </thead>
           <tbody>
@@ -51,7 +51,7 @@ export class Reviews extends Component{
                 <td>{dep.Address}</td>
                 <td>{dep.Ratings}</td>
                 <td>{dep.w_review}</td>
-                <td> <img alt={imgURL(dep.PictureID)} src={imgURL(dep.PictureID)} /> </td>
+                {/* <td> <img alt={imgURL(dep.PictureID)} src={imgURL(dep.PictureID)} /> </td> */}
                 </tr> 
                  )}
           </tbody>
@@ -65,7 +65,7 @@ export class Reviews extends Component{
   }
 }
 
-function imgURL(picture_id){
-  const src = `./Images/${picture_id}`;
-  return src;
-}
+// function imgURL(picture_id){
+//   const src = `./Images/${picture_id}`;
+//   return src;
+// }
