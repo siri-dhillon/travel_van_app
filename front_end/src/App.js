@@ -23,6 +23,9 @@ import {DeleteAccount} from './Pages/DeleteAccount';
 import {Reviews} from './Pages/Reviews';
 import {UpdatePhone} from './Pages/UpdatePhone';
 import {RestaurantDressCode} from './Pages/RestaurantDressCode';
+import {ClubName} from './Pages/ClubName';
+import {ClubAddress} from './Pages/ClubAddress';
+import {ClubFee} from './Pages/ClubFee';
 
 // modules for routing
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -127,6 +130,9 @@ function App() {
             <Route path="DeleteAccount" element={<DeleteAccount />} />
             <Route path="UpdatePhone" element={<UpdatePhone />} />
             <Route path="RestaurantDressCode" element={<RestaurantDressCode />} />
+            <Route path="ClubName" element={<ClubName />} />
+            <Route path="ClubAddress" element={<ClubAddress />} />
+            <Route path="ClubFee" element={<ClubFee />} />
 
         </Routes>
     </BrowserRouter>

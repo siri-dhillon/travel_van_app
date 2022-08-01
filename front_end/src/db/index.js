@@ -225,6 +225,42 @@ app.get('/api/club',(request, response)=>{
 
 });
 
+app.get('/api/clubname',(request, response)=>{
+
+    var query = `SELECT ClubID, Name FROM travelvan.club`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from club!');
+        }
+        response.send(rows);
+    });
+
+});
+
+app.get('/api/clubaddress',(request, response)=>{
+
+    var query = `SELECT ClubID, Address FROM travelvan.club`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from club!');
+        }
+        response.send(rows);
+    });
+
+});
+
+app.get('/api/clubfee',(request, response)=>{
+
+    var query = `SELECT ClubID, Fee FROM travelvan.club`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from club!');
+        }
+        response.send(rows);
+    });
+
+});
+
 //Table5: concert
 app.get('/api/concert',(request, response)=>{
 

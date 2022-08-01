@@ -31,7 +31,13 @@ export class Clubs extends Component{
     return(
       <div className="p-10 text-center bg-white">
       <h1 className="mb-3 text-success">Check out Vancouver City's Night Life!</h1>
-      <h5 className="mb-3 text-success">Dinner, Drinks, Dancing and so much more!</h5>
+      <h5 className="mb-3">Dinner, Drinks, Dancing and so much more!</h5>
+      <h5 className="mb-3 text-success">To view clubs by name only click Name below</h5>
+      <h5 className="mb-3 text-success">To view clubs by address only click Address below</h5>
+      <h5 className="mb-3 text-success">To view clubs by fee only click Fee below</h5>
+      <div className= "mb-3" > <a href="/ClubName" className="btn btn-outline-success">Name</a></div>
+      <div className= "mb-3" > <a href="/ClubAddress" className="btn btn-outline-success">Address</a></div>
+      <div className= "mb-3" > <a href="/ClubFee" className="btn btn-outline-success">Fee</a></div>
       <table className="table table-success table-striped table-hover">
         <thead>
           <tr> 
