@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import logo from './Pages/Images/Travel-Van-Logo.png';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

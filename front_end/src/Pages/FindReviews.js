@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import React, {Component} from 'react'; 
 import { variables } from '../Variables';
 import axios from 'axios';
@@ -41,13 +43,11 @@ export class FindReviews extends Component{
         "w_review" : w_review
       } )
       .then( (res) => {
-        // console.log(res);
         console.log(res.data);
-        // console.log(res.data.array);
         this.State = {res}; 
 
         this.setState({data_array:res.data})
-        if(res['data'].token) { // this mean succsfuly
+        if(res['data'].token) { // this mean successfully
           
           console.log(res.data.token);
           localStorage.setItem("token", res.data.token);
@@ -55,7 +55,7 @@ export class FindReviews extends Component{
             
             this.props.props.history.push('/Home');
           } 
-          if(res['data'].message){// this mean faild
+          if(res['data'].message){// this mean failed
             const err  = res.data.message;
             this.setState({
               erros: err

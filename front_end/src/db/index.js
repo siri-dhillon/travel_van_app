@@ -232,6 +232,7 @@ app.get('/api/club',(request, response)=>{
 
 });
 
+//Projection by Club Name
 app.get('/api/clubname',(request, response)=>{
 
     var query = `SELECT ClubID, Name FROM travelvan.club`;
@@ -244,6 +245,7 @@ app.get('/api/clubname',(request, response)=>{
 
 });
 
+//Projection by Club Address
 app.get('/api/clubaddress',(request, response)=>{
 
     var query = `SELECT ClubID, Address FROM travelvan.club`;
@@ -256,6 +258,7 @@ app.get('/api/clubaddress',(request, response)=>{
 
 });
 
+//Projection by Club Fee
 app.get('/api/clubfee',(request, response)=>{
 
     var query = `SELECT ClubID, Fee FROM travelvan.club`;
@@ -281,6 +284,7 @@ app.get('/api/concert',(request, response)=>{
 
 });
 
+//Aggregation by MIN(Cost) of Club
 app.get('/api/concertmin',(request, response)=>{
 
     var query = `SELECT ConcertID, Price, Name, Address, Date FROM travelvan.concert WHERE Price = (SELECT MIN(Price) FROM travelvan.concert)`;
@@ -293,7 +297,7 @@ app.get('/api/concertmin',(request, response)=>{
 
 });
 
-
+//Aggregation by MAX(Cost) of Club
 app.get('/api/concertmax',(request, response)=>{
 
     var query = `SELECT ConcertID, Price, Name, Address, Date FROM travelvan.concert WHERE PRICE = (SELECT MAX(Price) FROM travelvan.concert)`;
@@ -521,6 +525,7 @@ app.get('/api/Restaurant',(request, response)=>{
 
 });
 
+//Select by dress code in Restaurant
 app.post('/api/RestaurantDressCode',(request, response)=>{
 
     var query = `SELECT RestaurantID, Name, dressCode FROM TravelVan.Restaurant WHERE dressCode = ?`;
@@ -539,6 +544,7 @@ app.post('/api/RestaurantDressCode',(request, response)=>{
 
 });
 
+//Nested aggregation with group by in Restaurant
 app.get('/api/RestaurantsAvgCost',(request, response)=>{
 
     var query = `SELECT RestaurantID, dressCode, Cost FROM TravelVan.Restaurant WHERE Cost = (SELECT AVG(Cost) FROM travelvan.Restaurant) GROUP BY dressCode`;
@@ -577,6 +583,7 @@ app.get('/api/transport',(request, response)=>{
 
 });
 
+//Nested aggregation by group by in Transport
 app.get('/api/underavg',(request, response)=>{
 
     var query = `SELECT TransportID, Cost FROM  travelvan.transport WHERE Cost < (SELECT AVG(Cost) FROM travelvan.transport)`;
@@ -605,7 +612,7 @@ app.post('/api/photo_upload',(request, response)=>{
 });
 
 
-// REVIEWS
+// Join Query of REVIEWS
 app.get('/api/selectreviews',(request, response)=>{
 
     var query = `SELECT ownedplace.placeid, ownedplace.Name, ownedplace.Address, postedreviews.Ratings, postedreviews.w_review
@@ -620,7 +627,8 @@ app.get('/api/selectreviews',(request, response)=>{
     });
 
 });
-// INSERT REVIEWS
+
+// INSERT OPERATION REVIEWS
 app.post('/api/insertreviews',(request, response)=>{
 
     var query = `INSERT INTO travelvan.postedreviews
@@ -636,6 +644,7 @@ app.post('/api/insertreviews',(request, response)=>{
 
 });
 
+//Division query of reviews
 app.post('/api/findreviews',(request, response)=>{
     var query = `SELECT * FROM TravelVan.postedreviews WHERE Reviewerid = ?`;
     var values = [request.body['Reviewerid']];

@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import {React, Component} from 'react'; 
 import { variables } from '../Variables';
 import axios from 'axios';
@@ -9,7 +11,6 @@ export class DeleteAccount extends Component{
             UserId:'',
             erros:''
         };
-    // console.log('login',props)
     }
   
     onChange = (e) =>{

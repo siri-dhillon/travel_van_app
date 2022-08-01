@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import React, {Component} from 'react'; 
 import { variables } from '../Variables';
 import axios from 'axios';
@@ -10,7 +12,6 @@ export class UpdatePhone extends Component{
             UserId:'',
             erros:''
         };
-    // console.log('login',props)
     }
   
     onChange = (e) =>{
@@ -30,17 +31,14 @@ export class UpdatePhone extends Component{
       } )
       .then( (res) => {
         console.log(res);
-        if(res['data'].token) { // this mean succsfuly
+        if(res['data'].token) { // this mean successfully
           
           console.log(res.data.token);
           localStorage.setItem("token", res.data.token);
             this.props.ReUserState(true);
-            // let navigate = useNavigate();
-            // navigate('/Home');
             this.props.history.push('/Home');
-            // window.open("/Home");
           } 
-          if(res['data'].message){// this mean faild
+          if(res['data'].message){// this mean failed
             const err  = res.data.message;
             this.setState({
               erros: err

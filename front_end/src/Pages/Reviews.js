@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import {React, Component} from 'react'; 
 import { variables } from '../Variables';
 
@@ -41,7 +43,6 @@ export class Reviews extends Component{
             <th> Address</th>
             <th> Ratings</th>
             <th> Reviews</th>
-            {/* <th> Pictures Inserted</th> */}
           </tr>
           </thead>
           <tbody>
@@ -51,7 +52,6 @@ export class Reviews extends Component{
                 <td>{dep.Address}</td>
                 <td>{dep.Ratings}</td>
                 <td>{dep.w_review}</td>
-                {/* <td> <img alt={imgURL(dep.PictureID)} src={imgURL(dep.PictureID)} /> </td> */}
                 </tr> 
                  )}
           </tbody>

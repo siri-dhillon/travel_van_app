@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import React, {Component} from 'react'; 
 import { variables } from '../Variables';
 

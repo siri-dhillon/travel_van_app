@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import logo from './Images/Travel-Van-Logo.png';
 
 //This is the sign in page for users to sign into
@@ -15,7 +17,6 @@ export class SignIn extends Component{
           password:'',
           erros:''
       };
-  // console.log('login',props)
   }
 
   onChange = (e) =>{
@@ -35,7 +36,7 @@ export class SignIn extends Component{
     } )
     .then( (res) => {
       console.log(res);
-      if(res['data'].token) { // this mean succsfuly
+      if(res['data'].token) { // this mean successfully
         
         console.log(res.data.token);
         localStorage.setItem("token", res.data.token);
@@ -43,7 +44,7 @@ export class SignIn extends Component{
           
           this.props.props.history.push('/Home');
         } 
-        if(res['data'].message){// this mean faild
+        if(res['data'].message){// this mean failed
           const err  = res.data.message;
           this.setState({
             erros: err

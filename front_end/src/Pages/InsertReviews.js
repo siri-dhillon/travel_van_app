@@ -1,3 +1,5 @@
+// Created by: Sirpreet K. Dhillon and Simran Nijjar 
+
 import logo from './Images/Travel-Van-Logo.png';
 import React, {Component} from 'react'; 
 import { variables } from '../Variables';
@@ -39,7 +41,7 @@ export class InsertReviews extends Component{
       } )
       .then( (res) => {
         console.log(res);
-        if(res['data'].token) { // this mean succsfuly
+        if(res['data'].token) { // this mean successfully
           
           console.log(res.data.token);
           localStorage.setItem("token", res.data.token);
@@ -47,7 +49,7 @@ export class InsertReviews extends Component{
             
             this.props.props.history.push('/Home');
           } 
-          if(res['data'].message){// this mean faild
+          if(res['data'].message){// this mean failed
             const err  = res.data.message;
             this.setState({
               erros: err
