@@ -6,3 +6,12 @@ Travel Van Application built using React JS, Node JS, Express JS and MySQL. REST
 2. run on terminal or git bash: node ./frontend/src/db/index.js
 3. run in frontend folder: npm i 
 4. run: npm start
+
+### Latest Commit - git log
+sirpr@DESKTOP-T144AS9 MINGW64 ~/Git-stuff/travel_van_app (main)
+$ git log
+commit b4cc95532facc46e5af0af5d7013c500b4f9250a (HEAD -> main, origin/main, origin/HEAD)
+Author: Sirpreet Kaur Dhillon <sirpreetdhillon97@gmail.com>
+Date:   Mon Aug 1 16:43:59 2022 -0700
+
+    Update README.md
