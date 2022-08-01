@@ -11,6 +11,13 @@ var app = Express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+// FILE UPLOAD 
+var fileUpload = require('express-fileupload');
+var fs = require('fs'); // file system module 
+app.use(fileUpload());
+app.use('../Pages/Images', Express.static(__dirname+'../Pages/Images'));
+
+
 // CORS
 var cors = require("cors");
 app.use(cors()); // can use corsOptions but will leave as is for travelvan project 
@@ -585,24 +592,27 @@ app.get('/api/underavg',(request, response)=>{
 // File or Photo Uploads
 app.post('/api/photo_upload',(request, response)=>{
 
-    var values = request.body['pictureId']
-    fs.writeFile("./Photos/"+values+"_"+request.files.file.name,
+    //var values = request.body['pictureId']
+    fs.writeFile("../Pages/Images/"+request.files.file.name,
     request.files.file.data, function(err){
         if(err){
             return 
             console.log(err);
         }
-        response.json(request.files.file.name);
+        response.send(request.files.file.name);
     })
 
 });
 
 
 // REVIEWS
-app.post('/api/reviews',(request, response)=>{
+app.get('/api/selectreviews',(request, response)=>{
 
-    //var values = request.body['']
-    var query = `SELECT * FROM travelvan.ownedplace`;
+    var query = `SELECT ownedplace.placeid, ownedplace.Name, ownedplace.Address, postedreviews.Ratings, postedreviews.w_review, hadpictures.PictureID
+                FROM postedreviews 
+                INNER JOIN ownedplace ON postedreviews.Placeid=ownedplace.Placeid
+                INNER JOIN hadpictures ON hadpictures.Reviewid=postedreviews.Reviewid
+                ORDER BY ownedplace.Placeid`;
     connection.query(query, function(err,rows,fields){
         if(err){
             response.send('Failed select query from reviews!');
@@ -611,4 +621,34 @@ app.post('/api/reviews',(request, response)=>{
     });
 
 });
+// INSERT REVIEWS
+app.post('/api/insertreviews',(request, response)=>{
 
+    var query = `INSERT INTO travelvan.postedreviews
+                (Placeid, ReviewerId, Ratings, w_review) VALUES (?, ?, ?, ?) `;
+    var values = [request.body['Placeid'],request.body['ReviewerId'],request.body['Ratings'],request.body['w_review']];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed!');
+        }
+        response.json('Added');
+    });
+
+});
+
+//get Review Id to add pictures
+
+app.post('/api/getreviewid',(request, response)=>{
+
+    var query = `SELECT postedreviews.Reviewid FROM postedreviews WHERE Placeid=? and ReviewerId=?`;
+    var values = [request.body['Placeid'],request.body['ReviewerId']];
+    
+    connection.query(query, values,function(err,rows,fields){
+        if(err){
+            response.send('Failed to get review_id!');
+        }
+        response.send(rows);
+    });
+
+});
