@@ -31,6 +31,11 @@ export class Concerts extends Component{
     return(
       <div className="p-10 text-center bg-white">
       <h1 className="mb-3 text-success">Concerts in Metro Vancouver!</h1>
+      <h5 className="mb-3">Listen to some amazing music from various artists</h5>
+      <h5 className="mb-3 text-success">To look for the concert with the lowest concert price, select Minimum</h5>
+      <h5 className="mb-3 text-success">To look for the concert with the highest concert price, select Maximum</h5>
+      <div className= "mb-3" > <a href="/ConcertMin" className="btn btn-outline-success">Minimum</a></div>
+      <div className= "mb-3" > <a href="/ConcertMax" className="btn btn-outline-success">Maximum</a></div>
       <table className="table table-success table-striped table-hover">
         <thead>
           <tr> 

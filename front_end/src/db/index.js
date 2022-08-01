@@ -274,6 +274,31 @@ app.get('/api/concert',(request, response)=>{
 
 });
 
+app.get('/api/concertmin',(request, response)=>{
+
+    var query = `SELECT ConcertID, Price, Name, Address, Date FROM travelvan.concert WHERE PRICE = (SELECT MIN(Price) FROM travelvan.concert)`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from concert!');
+        }
+        response.send(rows);
+    });
+
+});
+
+
+app.get('/api/concertmax',(request, response)=>{
+
+    var query = `SELECT ConcertID, Price, Name, Address, Date FROM travelvan.concert WHERE PRICE = (SELECT MAX(Price) FROM travelvan.concert)`;
+    connection.query(query, function(err,rows,fields){
+        if(err){
+            response.send('Failed select query from concert!');
+        }
+        response.send(rows);
+    });
+
+});
+
 //Table6: desirestogoto
 app.get('/api/desirestogoto',(request, response)=>{
 
