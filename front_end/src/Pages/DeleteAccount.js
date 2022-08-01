@@ -15,38 +15,22 @@ export class DeleteAccount extends Component{
     onChange = (e) =>{
       this.setState({ [e.target.name]: e.target.value });
      }
-  
-      Login =(e) =>{
+
+      RequestToRemove = (e) => {
         e.preventDefault();
-        this.setState({ [e.target.name]: e.target.value });    
-  
-      const UserId = this.state.UserId;
-          
-      axios.delete(variables.API_URL+'deleteaccount',  {
-        "UserId" : UserId
-      } )
-      .then( (res) => {
-        console.log(res);
-        if(res['data'].token) { // this mean succsfuly
-          
-          console.log(res.data.token);
-          localStorage.setItem("token", res.data.token);
-            this.props.ReUserState(true);
-            // let navigate = useNavigate();
-            // navigate('/Home');
-            this.props.history.push('/Home');
-            // window.open("/Home");
-          } 
-          if(res['data'].message){// this mean faild
-            const err  = res.data.message;
-            this.setState({
-              erros: err
-            });
-          }
-  
-      })
-      .catch((err) => {console.log(err)} )
-      }
+        this.setState({ [e.target.name]: e.target.value }); 
+
+         const UserId = this.state.UserId;
+         axios.post(variables.API_URL+'deleteaccount',{
+            "UserId" : UserId
+         })
+          .then(res => {
+            console.log(res);
+            
+            console.log(res.data.message);
+         })
+         .catch((err) => {console.log(err)} )
+        }
   render () {
 
     return(
@@ -57,7 +41,7 @@ export class DeleteAccount extends Component{
       <input value={this.state.UserId} onChange={this.onChange} type = "text" name="UserId" className="form-control mb-3" placeholder="Enter your UserId" 
       />
       <h5 className="mb-3">To confirm, press Delete Account</h5>
-      <button onClick={this.Login} className="btn btn-outline-success">Delete Account</button>
+      <button onClick={this.RequestToRemove} className="btn btn-outline-success">Delete Account</button>
     </div>
     )
   }

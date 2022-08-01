@@ -89,7 +89,7 @@ app.put('/api/user_table/name',(request, response)=>{
 
 });
 /* update phone in a given record */
-app.put('/api/user_table/phone',(request, response)=>{
+app.put('/api/updatephone',(request, response)=>{
 
     var query = `UPDATE travelvan.user_table
                 SET Phone=? WHERE UserId=?`;
@@ -129,7 +129,7 @@ app.put('/api/user_table',(request, response)=>{
 
 });
 /* delete a user --> not sending the id in values but instead from the URL itself*/
-app.delete('/api/user_table',(request, response)=>{
+app.post('/api/deleteaccount',(request, response)=>{
 
     var query = `DELETE from travelvan.user_table WHERE UserId=?`;
     var values = [
